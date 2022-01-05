@@ -107,7 +107,7 @@ const Home = ({ navigation }) => {
 					}}
 					style={logoStyles}
 				/>
-				<Logo dimensions={dimensions} />
+				<Logo dimensions={dimensions} navigation={navigation} />
 				{isDisplayed ? (
 					<Text>Que souhaitez-vous boire ?</Text>
 				) : (

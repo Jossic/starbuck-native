@@ -2,12 +2,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-function Places() {
-    return (
-        <View>
-            <Text>Places</Text>
-        </View>
-    );
+function Places(props) {
+	console.log(`props =>`, props);
+	return (
+		<View>
+			<Text>Places</Text>
+
+			{props.route.params?.fromLogo && <Text>ESTER EGG</Text>}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({});

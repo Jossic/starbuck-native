@@ -1,23 +1,30 @@
 // Librairies
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 function Logo(props) {
-    return (
-        <Text
-            style={{ ...styles.title, fontSize: props.dimensions.window.width * 0.055 }}
-        >
-            STARBUCKS
-        </Text>
-    );
+	return (
+		<TouchableWithoutFeedback
+			onPress={() =>
+				props.navigation.navigate('Places', { fromLogo: true })
+			}>
+			<Text
+				style={{
+					...styles.title,
+					fontSize: props.dimensions.window.width * 0.055,
+				}}>
+				STARBUCKS
+			</Text>
+		</TouchableWithoutFeedback>
+	);
 }
 
 const styles = StyleSheet.create({
-    title: {
-        color: '#006341',
-        textTransform: 'uppercase',
-        fontFamily: 'Montserrat-Black',
-    },
+	title: {
+		color: '#006341',
+		textTransform: 'uppercase',
+		fontFamily: 'Montserrat-Black',
+	},
 });
 
 export default Logo;
