@@ -5,21 +5,24 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from 'react-native-vector-icons';
 import HeaderButton from '../components/UI/HeaderButton';
 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 import HomeScreen from '../screens/Home';
 import PlacesScreen from '../screens/Places';
 import { Platform } from 'react-native';
 import Colors from '../constants/Colors';
-const MainStackNavigatorComponent = createStackNavigator();
 
 const headerOptions = {
 	headerTintColor: Platform.OS === 'ios' ? Colors.primary : 'white',
 	headerStyle:
 		Platform.OS === 'ios'
-			? { color: Colors.primary, backgroundColor: 'transparent' }
-			: { color: 'white', backgroundColor: Colors.primary },
+			? { backgroundColor: 'transparent' }
+			: { backgroundColor: Colors.primary },
 };
 
-export const MainStackNavigator = () => {
+const MainStackNavigatorComponent = createStackNavigator();
+
+const MainStackNavigator = () => {
 	return (
 		<MainStackNavigatorComponent.Navigator>
 			<MainStackNavigatorComponent.Screen
@@ -59,8 +62,7 @@ export const AppTabNavigator = () => {
 					let iconName;
 					if (route.name === 'HomeTab') {
 						iconName = focused ? 'home' : 'home-outline';
-					}
-					if (route.name === 'PlacesTab') {
+					} else if (route.name === 'PlacesTab') {
 						iconName = focused ? 'location' : 'location-outline';
 					}
 					return (
@@ -76,7 +78,7 @@ export const AppTabNavigator = () => {
 		>
 			<TabNavigator.Screen
 				name='HomeTab'
-				component={HomeScreen}
+				component={MainStackNavigator}
 				options={{ title: 'Accueil' }}
 			/>
 			<TabNavigator.Screen
@@ -85,5 +87,24 @@ export const AppTabNavigator = () => {
 				options={{ title: 'Les salons' }}
 			/>
 		</TabNavigator.Navigator>
+	);
+};
+
+const Drawer = createDrawerNavigator();
+
+export const AppDrawerNavigator = () => {
+	return (
+		<Drawer.Navigator>
+			<Drawer.Screen
+				name='HomeTabDrawer'
+				component={AppTabNavigator}
+				options={{ title: 'Accueil' }}
+			/>
+			<Drawer.Screen
+				name='PlacesTabDrawer'
+				component={PlacesScreen}
+				options={{ title: 'Les salons' }}
+			/>
+		</Drawer.Navigator>
 	);
 };
