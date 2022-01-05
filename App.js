@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import AppNavigator from './navigation/AppNavigator';
+import Colors from './constants/Colors';
 
 export default function App() {
 	// Police personnalisée
@@ -20,7 +21,7 @@ export default function App() {
 					alignItems: 'center',
 					justifyContent: 'center',
 				}}>
-				<ActivityIndicator size='large' color='#006341' />
+				<ActivityIndicator size='large' color={Colors.primary} />
 			</View>
 		);
 	}

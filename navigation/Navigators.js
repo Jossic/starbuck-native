@@ -1,17 +1,21 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
+import HeaderButton from '../components/UI/HeaderButton';
 
 import HomeScreen from '../screens/Home';
 import PlacesScreen from '../screens/Places';
 import { Platform } from 'react-native';
+import Colors from '../constants/Colors';
 const MainStackNavigatorComponent = createStackNavigator();
 
 const headerOptions = {
-	headerTintColor: Platform.OS === 'ios' ? '#006341' : 'white',
+	headerTintColor: Platform.OS === 'ios' ? Colors.primary : 'white',
 	headerStyle:
 		Platform.OS === 'ios'
-			? { color: '#006341', backgroundColor: 'transparent' }
-			: { color: 'white', backgroundColor: '#006341' },
+			? { color: Colors.primary, backgroundColor: 'transparent' }
+			: { color: 'white', backgroundColor: Colors.primary },
 };
 
 export const MainStackNavigator = () => {
@@ -20,11 +24,20 @@ export const MainStackNavigator = () => {
 			<MainStackNavigatorComponent.Screen
 				name='Home'
 				component={HomeScreen}
-				options={{
+				options={({ navigation }) => ({
 					title: 'Accueil',
 					...headerOptions,
-					headerShown: false,
-				}}
+					headerRight: () => (
+						<HeaderButtons HeaderButtonComponent={HeaderButton}>
+							<Item
+								title='Places'
+								iconName='location-outline'
+								onPress={() => navigation.navigate('Places')}
+							/>
+						</HeaderButtons>
+					),
+					// headerShown: false,
+				})}
 			/>
 			<MainStackNavigatorComponent.Screen
 				name='Places'

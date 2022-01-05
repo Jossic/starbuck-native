@@ -1,6 +1,7 @@
 // Librairies
 import React from 'react';
 import { Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import Colors from '../../../constants/Colors';
 
 function Logo(props) {
 	return (
@@ -21,7 +22,7 @@ function Logo(props) {
 
 const styles = StyleSheet.create({
 	title: {
-		color: '#006341',
+		color: Colors.primary,
 		textTransform: 'uppercase',
 		fontFamily: 'Montserrat-Black',
 	},

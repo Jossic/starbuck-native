@@ -17,6 +17,7 @@ import {
 // Composants
 import Product from '../components/Product/Product';
 import Logo from '../components/UI/Logo/Logo';
+import Colors from '../constants/Colors';
 
 // Variables
 const window = Dimensions.get('window');
@@ -129,14 +130,14 @@ const Home = ({ navigation }) => {
 					)}
 					<View style={{ marginTop: 40 }}>
 						<TouchableWithoutFeedback
-							onPress={() =>
-								// setIsDisplayed((prevState) => !prevState)
-								navigation.navigate('Places')
+							onPress={
+								() => setIsDisplayed((prevState) => !prevState)
+								// navigation.navigate('Places')
 							}>
 							<View
 								style={{
 									width: '40%',
-									backgroundColor: '#006341',
+									backgroundColor: Colors.primary,
 									paddingHorizontal: 15,
 									paddingVertical: 10,
 									borderRadius: 3,
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingTop: 50,
-		paddingBottom: 15,
+		paddingTop: 20,
+		paddingBottom: 10,
 	},
 });
