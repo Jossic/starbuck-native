@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from 'react-native-vector-icons';
 import HeaderButton from '../components/UI/HeaderButton';
 
 import HomeScreen from '../screens/Home';
@@ -45,5 +46,44 @@ export const MainStackNavigator = () => {
 				options={{ title: 'Les salons', ...headerOptions }}
 			/>
 		</MainStackNavigatorComponent.Navigator>
+	);
+};
+
+const TabNavigator = createBottomTabNavigator();
+
+export const AppTabNavigator = () => {
+	return (
+		<TabNavigator.Navigator
+			screenOptions={({ route }) => ({
+				tabBarIcon: ({ focused, color, size }) => {
+					let iconName;
+					if (route.name === 'HomeTab') {
+						iconName = focused ? 'home' : 'home-outline';
+					}
+					if (route.name === 'PlacesTab') {
+						iconName = focused ? 'location' : 'location-outline';
+					}
+					return (
+						<Ionicons name={iconName} size={size} color={color} />
+					);
+				},
+			})}
+			tabBarOptions={{
+				activeTintColor: Colors.primary,
+				// inactiveTintColor: Color.primaryFaded,
+			}}
+			// initialRouteName='PlacesTab'
+		>
+			<TabNavigator.Screen
+				name='HomeTab'
+				component={HomeScreen}
+				options={{ title: 'Accueil' }}
+			/>
+			<TabNavigator.Screen
+				name='PlacesTab'
+				component={PlacesScreen}
+				options={{ title: 'Les salons' }}
+			/>
+		</TabNavigator.Navigator>
 	);
 };
