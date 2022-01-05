@@ -99,66 +99,70 @@ const Home = ({ navigation }) => {
 		marginBottom: 15,
 	};
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<View style={styles.container}>
-				<Image
-					source={{
-						uri: 'https://believemy.com/uploads/6435acae7f1901acb1e4355395964ea5_ea186b839326aea1816bd1f3f2ab84b3.png',
-					}}
-					style={logoStyles}
-				/>
-				<Logo dimensions={dimensions} navigation={navigation} />
-				{isDisplayed ? (
-					<Text>Que souhaitez-vous boire ?</Text>
-				) : (
-					<Text>Commencez par ouvrir le menu</Text>
-				)}
-				<TouchableOpacity
-					onPress={() => Linking.openURL('https://starbucks.fr')}>
-					<Text>En savoir plus</Text>
-				</TouchableOpacity>
-
-				{isDisplayed && (
-					<FlatList
-						data={products}
-						renderItem={({ item }) => <Product item={item} />}
-						keyExtractor={(item) => Math.random().toString()}
-						style={{ width: '100%' }}
+		<View style={{ flex: 1, backgroundColor: 'white' }}>
+			<SafeAreaView style={{ flex: 1 }}>
+				<View style={styles.container}>
+					<Image
+						source={{
+							uri: 'https://believemy.com/uploads/6435acae7f1901acb1e4355395964ea5_ea186b839326aea1816bd1f3f2ab84b3.png',
+						}}
+						style={logoStyles}
 					/>
-				)}
-				<View style={{ marginTop: 40 }}>
-					<TouchableWithoutFeedback
-						onPress={() =>
-							// setIsDisplayed((prevState) => !prevState)
-							navigation.navigate('Places')
-						}>
-						<View
-							style={{
-								width: '40%',
-								backgroundColor: '#006341',
-								paddingHorizontal: 15,
-								paddingVertical: 10,
-								borderRadius: 3,
-							}}>
-							<Text style={{ color: 'white' }}>
-								{isDisplayed
-									? 'Fermer le menu'
-									: 'Ouvrir le menu'}
+					<Logo dimensions={dimensions} navigation={navigation} />
+					{isDisplayed ? (
+						<Text>Que souhaitez-vous boire ?</Text>
+					) : (
+						<Text>Commencez par ouvrir le menu</Text>
+					)}
+					<TouchableOpacity
+						onPress={() => Linking.openURL('https://starbucks.fr')}>
+						<Text>En savoir plus</Text>
+					</TouchableOpacity>
+
+					{isDisplayed && (
+						<FlatList
+							data={products}
+							renderItem={({ item }) => <Product item={item} />}
+							keyExtractor={(item) => Math.random().toString()}
+							style={{ width: '100%' }}
+						/>
+					)}
+					<View style={{ marginTop: 40 }}>
+						<TouchableWithoutFeedback
+							onPress={() =>
+								// setIsDisplayed((prevState) => !prevState)
+								navigation.navigate('Places')
+							}>
+							<View
+								style={{
+									width: '40%',
+									backgroundColor: '#006341',
+									paddingHorizontal: 15,
+									paddingVertical: 10,
+									borderRadius: 3,
+								}}>
+								<Text style={{ color: 'white' }}>
+									{isDisplayed
+										? 'Fermer le menu'
+										: 'Ouvrir le menu'}
+								</Text>
+							</View>
+						</TouchableWithoutFeedback>
+
+						<View style={{ alignItems: 'center', marginTop: 30 }}>
+							<Text>
+								Version{' '}
+								<Text style={{ fontWeight: 'bold' }}>
+									{Platform.OS === 'ios'
+										? 'iPhone'
+										: 'Android'}
+								</Text>
 							</Text>
 						</View>
-					</TouchableWithoutFeedback>
-
-					<View style={{ alignItems: 'center', marginTop: 30 }}>
-						<Text>
-							Version{' '}
-							<Text style={{ fontWeight: 'bold' }}>
-								{Platform.OS === 'ios' ? 'iPhone' : 'Android'}
-							</Text>
-						</Text>
 					</View>
 				</View>
-			</View>
-		</SafeAreaView>
+			</SafeAreaView>
+		</View>
 	);
 };
 

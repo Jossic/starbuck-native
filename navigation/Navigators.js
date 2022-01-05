@@ -23,6 +23,7 @@ export const MainStackNavigator = () => {
 				options={{
 					title: 'Accueil',
 					...headerOptions,
+					headerShown: false,
 				}}
 			/>
 			<MainStackNavigatorComponent.Screen
