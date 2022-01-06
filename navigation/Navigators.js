@@ -94,11 +94,21 @@ const Drawer = createDrawerNavigator();
 
 export const AppDrawerNavigator = () => {
 	return (
-		<Drawer.Navigator>
+		<Drawer.Navigator
+			screenOptions={{ drawerActiveTintColor: Colors.primary }}>
 			<Drawer.Screen
 				name='HomeTabDrawer'
 				component={AppTabNavigator}
-				options={{ title: 'Accueil' }}
+				options={{
+					title: 'Accueil',
+					drawerIcon: ({ focused, color, size }) => (
+						<Ionicons
+							name={focused ? 'home' : 'home-outline'}
+							color={color}
+							size={size}
+						/>
+					),
+				}}
 			/>
 			<Drawer.Screen
 				name='PlacesTabDrawer'
