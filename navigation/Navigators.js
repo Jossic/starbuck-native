@@ -11,6 +11,7 @@ import HomeScreen from '../screens/Home';
 import PlacesScreen from '../screens/Places';
 import { Platform } from 'react-native';
 import Colors from '../constants/Colors';
+import CustomDrawerContent from '../screens/CustomDrawerContent';
 
 const headerOptions = {
 	headerTintColor: Platform.OS === 'ios' ? Colors.primary : 'white',
@@ -95,7 +96,8 @@ const Drawer = createDrawerNavigator();
 export const AppDrawerNavigator = () => {
 	return (
 		<Drawer.Navigator
-			screenOptions={{ drawerActiveTintColor: Colors.primary }}>
+			screenOptions={{ drawerActiveTintColor: Colors.primary }}
+			drawerContent={(props) => <CustomDrawerContent {...props} />}>
 			<Drawer.Screen
 				name='HomeTabDrawer'
 				component={AppTabNavigator}
