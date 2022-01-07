@@ -7,12 +7,12 @@ import {
 	FlatList,
 	TouchableWithoutFeedback,
 	TouchableOpacity,
-	ActivityIndicator,
 	Linking,
 	Dimensions,
 	SafeAreaView,
 	Platform,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 
 // Composants
 import Product from '../components/Product/Product';
@@ -26,57 +26,9 @@ const screen = Dimensions.get('screen');
 const Home = ({ navigation }) => {
 	// States
 	const [isDisplayed, setIsDisplayed] = useState(false);
-	const [products, setProducts] = useState([
-		{
-			name: 'Iced Latte',
-		},
-		{
-			name: 'Doubleshot Iced Coffee',
-		},
-		{
-			name: 'Doubleshot Vanilla Iced Coffee',
-		},
-		{
-			name: 'Caramel Macchiato',
-		},
-		{
-			name: 'Iced Caramel Macchiato',
-		},
-		{
-			name: 'Iced Cappuccino',
-		},
-		{
-			name: 'Ristretto Bianco',
-		},
-		{
-			name: 'Cold Brew Latte',
-		},
-		{
-			name: 'Mocha',
-		},
-		{
-			name: 'Iced Mocha',
-		},
-		{
-			name: 'Americano',
-		},
-		{
-			name: 'Iced Americano',
-		},
-		{
-			name: 'Café Filtre',
-		},
-		{
-			name: 'Café Filtre Glacé',
-		},
-		{
-			name: 'Chocolat Viennois Signature',
-		},
-		{
-			name: 'Chocolat Viennois Signature Glacé',
-		},
-	]);
 	const [dimensions, setDimensions] = useState({ window, screen });
+
+	const products = useSelector((state) => state.products.products);
 
 	// Cycle de vie
 	useEffect(() => {

@@ -6,6 +6,19 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import AppNavigator from './navigation/AppNavigator';
 import Colors from './constants/Colors';
 
+//Redux
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import placesReducer from './store/reducers/places';
+import productsReducer from './store/reducers/products';
+
+const rootReducer = combineReducers({
+	places: placesReducer,
+	products: productsReducer,
+});
+
+const store = createStore(rootReducer);
+
 export default function App() {
 	// Police personnalisée
 	let [fontsLoaded] = useFonts({
@@ -26,7 +39,11 @@ export default function App() {
 		);
 	}
 
-	return <AppNavigator />;
+	return (
+		<Provider store={store}>
+			<AppNavigator />
+		</Provider>
+	);
 }
 
 const styles = StyleSheet.create({
