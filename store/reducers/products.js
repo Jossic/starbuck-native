@@ -1,3 +1,5 @@
+import { ADD_PRODUCT } from '../actions/products';
+
 const initialState = {
 	products: [
 		{
@@ -53,15 +55,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case 'ADD_PRODUCT':
-			const updatedProducts = state.products.unshift({
-				name: action.product,
-			});
-			console.log(`action.product =>`, action.product);
-			console.log(`updatedProducts =>`, updatedProducts);
+		case ADD_PRODUCT:
 			return {
 				...state,
-				products: updatedProducts,
+				products: [{ name: action.product }, ...state.products],
 			};
 		default:
 			return state;

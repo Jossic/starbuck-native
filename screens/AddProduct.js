@@ -21,8 +21,8 @@ const AddProduct = (props) => {
 	const onSubmitPressHandler = () => {
 		//Fermer le clavier
 		Keyboard.dismiss();
-		// Afficher une alerte
 		dispatch(productsAction.addProduct(productName));
+		// Afficher une alerte
 		Alert.alert('YEY', `Produit ${productName} ajouté !`);
 		setProductName('');
 	};
