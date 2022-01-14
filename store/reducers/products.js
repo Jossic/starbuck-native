@@ -53,9 +53,16 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		// case value:
-		// 	break;
-
+		case 'ADD_PRODUCT':
+			const updatedProducts = state.products.unshift({
+				name: action.product,
+			});
+			console.log(`action.product =>`, action.product);
+			console.log(`updatedProducts =>`, updatedProducts);
+			return {
+				...state,
+				products: updatedProducts,
+			};
 		default:
 			return state;
 	}

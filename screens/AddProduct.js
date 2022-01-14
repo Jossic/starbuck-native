@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Dimensions,
 	StyleSheet,
@@ -6,16 +6,48 @@ import {
 	TextInput,
 	TouchableOpacity,
 	View,
+	Keyboard,
+	Alert,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Colors from '../constants/Colors';
+import * as productsAction from '../store/actions/products';
 
 const AddProduct = (props) => {
+	const dispatch = useDispatch();
+
+	const [productName, setProductName] = useState('');
+
+	const onSubmitPressHandler = () => {
+		//Fermer le clavier
+		Keyboard.dismiss();
+		// Afficher une alerte
+		dispatch(productsAction.addProduct(productName));
+		Alert.alert('YEY', `Produit ${productName} ajouté !`);
+		setProductName('');
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.form}>
 				<Text style={styles.label}>Nom du produit</Text>
-				<TextInput style={styles.input} />
-				<TouchableOpacity style={styles.submit}>
+				<TextInput
+					style={styles.input}
+					placeholder='Nom du produit'
+					autoCapitalize='words'
+					autoCorrect={false}
+					autoFocus={true}
+					// autoComplete="email"
+					// keyboardType="email-address" // Pour changer le type de clavier, number, heure, etc...
+					// maxLength={5}
+					// multiline={true}
+					value={productName}
+					onChangeText={setProductName}
+				/>
+				<TouchableOpacity
+					style={styles.submit}
+					activeOpacity={0.8}
+					onPress={() => onSubmitPressHandler()}>
 					<Text style={styles.submitText}>Ajouter</Text>
 				</TouchableOpacity>
 			</View>

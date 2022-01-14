@@ -42,7 +42,7 @@ const MainStackNavigator = () => {
 							/>
 						</HeaderButtons>
 					),
-					// headerShown: false,
+					headerShown: false,
 				})}
 			/>
 			<MainStackNavigatorComponent.Screen
@@ -85,7 +85,7 @@ export const AppTabNavigator = () => {
 			<TabNavigator.Screen
 				name='HomeTab'
 				component={MainStackNavigator}
-				options={{ title: 'Accueil' }}
+				options={{ title: 'Accueil', headerShown: false }}
 			/>
 			<TabNavigator.Screen
 				name='PlacesTab'
@@ -113,6 +113,7 @@ export const AppDrawerNavigator = () => {
 				component={AppTabNavigator}
 				options={{
 					title: 'Accueil',
+					// headerShown: false,
 					drawerIcon: ({ focused, color, size }) => (
 						<Ionicons
 							name={focused ? 'home' : 'home-outline'}
